@@ -1,31 +1,50 @@
-import devicons from "./icons";
-
 function DisplayRepo({ repos }) {
   const data = repos.data;
+  const filterInput = document.querySelector(".filter-repos");
+
   console.log(repos);
 
-  // return (
-  //   <div>
-  //     {repos.map((repo) => {
-  //       <div key={repo.id}>rerepo.name</div>;
-  //     })}
-  //   </div>
-  // );
+  const handleRepoSearch = (e) => {
+    const search = e.target.value.toLowerCase();
+    console.groupEnd(search);
+  };
+
+  filterInput.addEventListener("input", (e) => {
+    const search = e.target.value.toLowerCase();
+    const repos = document.querySelectorAll(".repo");
+
+    for (const repo of repos) {
+      const repoText = repo.innerText.toLowerCase();
+
+      if (repoText.includes(search)) {
+        repo.classList.remove("hide");
+      } else {
+        repo.classList.add("hide");
+      }
+    }
+  });
 
   return (
-    <div class="repo-list">
-      {repos.map((repo) => (
-        <li key={repo.id} className="repos">
-          <h3>{repo.name}</h3>
-          <br />
-          <h2>Language Icon</h2>
-          {/* <div>{devicons[repo.language]}</div> */}
-          <div dangerouslySetInnerHTML={{ __html: devicons[repo.language] }} />
-          <br />
-          <br />
-          <a href={repo.html_url}> View Repo </a>
-        </li>
-      ))}
+    <div class="repos">
+      <input
+        type="text"
+        class="filter-repos hide"
+        placeholder="Search Repositories"
+        // onChange={handleRepoSearch}
+        onChange={(e) => handleRepoSearch(e.target.value)}
+      />
+      <ul class="repo-list">
+        {repos.map((repo) => (
+          <li key={repo.id} className="repo">
+            <h3>{repo.name}</h3>
+            <br />
+            {repo.language}
+            <br />
+            <br />
+            <a href={repo.html_url}> View Repo </a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

@@ -30,14 +30,11 @@ body {
   flex-direction: column;
   width: 90%;
   max-width: 1280px;
+  margin: auto;
 }
 
 .hide {
   display: none !important;
-}
-
-.show {
-  display: flex !important;
 }
 
 h1 {
@@ -93,11 +90,6 @@ small {
   background-color: var(--accent-pink);
 }
 
-#loading {
-  margin-top: 5rem;
-  font-size: 3rem;
-}
-
 /* -----------------User Info---------------- */
 
 h2 {
@@ -118,7 +110,7 @@ a {
   text-decoration: none;
 }
 
-.blue {
+.blue-header {
   color: var(--accent-blue);
 }
 
@@ -168,6 +160,7 @@ ul {
   width: 100%;
   border-bottom: 1px solid var(--text);
   padding: 1rem 0rem;
+  color: #f44a64;
 }
 
 .filter-repos {
@@ -295,7 +288,7 @@ h3 {
   }
 
   .repo-list {
-    /* justify-content: space-between; */
+    justify-content: space-between;
   }
 
   .repo-list li {
