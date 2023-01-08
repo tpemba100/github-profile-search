@@ -71,7 +71,11 @@ function App() {
           onChange={(e) => SetUsernameInput(e.target.value)}
         />
 
-        <button class="searchBtn" id="search-Btn" onClick={handleSearchSubmit}>
+        <button
+          class="search-usernameBtn"
+          id="search-usernameBtn"
+          onClick={handleSearchSubmit}
+        >
           Search
         </button>
       </div>

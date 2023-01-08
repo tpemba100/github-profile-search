@@ -242,6 +242,9 @@ h3 {
   margin: 0.5em 0;
 }
 
+.lang-text {
+  color: #e5e5e5;
+}
 @media screen and (max-width: 600px) {
   h1 {
     text-align: center;

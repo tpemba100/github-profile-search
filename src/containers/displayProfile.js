@@ -9,8 +9,12 @@ export default function DisplayProfile({ profile }) {
         </figure>
         <div>
           <h2>
-            <a href={profile.html_url}>
-              <strong>{profile.name}</strong>
+            <a
+              href={profile.html_url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <strong>{profile.name ? profile.name : "Github"}</strong>
             </a>
             &nbsp;<strong class="username">@{profile.login}</strong>
           </h2>
