@@ -1,34 +1,59 @@
 import "./App.css";
 import { useState } from "react";
+import DisplayProfile from "./containers/DisplayProfile";
+import DisplayRepos from "./containers/DisplayRepos";
 
 function App() {
   // const usernameInput = "tpemba100";
   const [usernameInput, SetUsernameInput] = useState("");
+  const [userInfo, setUserInfo] = useState([]);
+  const [repoList, setRepoList] = useState([]);
   // const [loading, Setloading] = useState(true);
   const url = "https://api.github.com/users/";
 
   const handleSearchSubmit = () => {
     fetchProfile();
+    fetchRepos();
+    console.log(usernameInput);
+    console.log(userInfo);
+    console.log(repoList);
   };
+
   const fetchProfile = async () => {
-    // loading.innerText = "Loading...";        ANOTHER LOADING STATE
     try {
       const res = await fetch(`${url}${usernameInput}`);
       const data = await res.json();
       if (data) {
+        console.log("sucess Profile Fetch");
         console.log(data);
-        // userInfo.innerHTML = displayProfile(data);
+        setUserInfo(data);
+        // userInfo.innerHTML = displayProfile(data);   //passing data to UI function
       } else {
         console.log("thiss");
-        // userInfo.innerText = "";
+        // userInfo.innerText = "";     seting everything to EMPTY
         // reposSection.innerText = "";
-        // loading.innerHTML = `<h3 style = "color: red">Username Not Found!</h1>`;
+        // loading.innerHTML = `<h3 style = "color: red">Username Not Found!</h1>`; //error message
       }
     } catch (error) {
       console.log("Error occured!");
       // loading.innerText = "";
     }
   };
+
+  const fetchRepos = async () => {
+    try {
+      const res = await fetch(`${url}${usernameInput}/repos`);
+      const data = await res.json();
+      setRepoList(data);
+      console.log("sucess Repo Fetch");
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+      // loading.innerText = "";
+      // setLoading(false);
+    }
+  };
+
   return (
     <div class="container">
       <h1 class="main-title">Github Profile Search</h1>
@@ -45,19 +70,9 @@ function App() {
           Search
         </button>
       </div>
-
-      <section class="intro" id="intro"></section>
-
-      <section class="repos hide">
-        <input
-          type="text"
-          class="filter-repos hide"
-          placeholder="Search Repositories"
-        />
-        <ul class="repo-list"></ul>
-      </section>
-
-      <div id="loading"></div>
+      <DisplayProfile profile={userInfo} />
+      {/* </section> */}
+      <DisplayRepos repos={repoList} />
     </div>
   );
 }

@@ -55,3 +55,5 @@ const devicons = {
   Vue: '<i class="devicon-vuejs-plain colored"></i> Vue',
   null: '<i class="devicon-markdown-original"></i> Markdown',
 };
+
+export default devicons;

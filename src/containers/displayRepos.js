@@ -1,20 +1,32 @@
-const displayRepos = (repos) => {
-  reposSection.classList.remove("hide");
-  filterInput.classList.remove("hide");
-  console.log(repos);
-  for (const repo of repos) {
-    const listItem = document.createElement("li");
-    listItem.classList.add("repo");
-    listItem.innerHTML = `
-    <h3>${repo.name}</h3>
-    <br />
-    <div>${devicons[repo.language]}</div>
-    <br />
-    <br />
-    <a href = ${repo.html_url} > View Repo </>
-    `;
-    repoList.append(listItem);
-  }
-};
+import devicons from "./icons";
 
-export default displayRepos;
+function DisplayRepo({ repos }) {
+  const data = repos.data;
+  console.log(repos);
+
+  // return (
+  //   <div>
+  //     {repos.map((repo) => {
+  //       <div key={repo.id}>rerepo.name</div>;
+  //     })}
+  //   </div>
+  // );
+
+  return (
+    <div class="repo-list">
+      {repos.map((repo) => (
+        <li key={repo.id} className="repos">
+          <h3>{repo.name}</h3>
+          <br />
+          <h2>Language Icon</h2>
+          {/* <div>{devicons[repo.language]}</div> */}
+          <div dangerouslySetInnerHTML={{ __html: devicons[repo.language] }} />
+          <br />
+          <br />
+          <a href={repo.html_url}> View Repo </a>
+        </li>
+      ))}
+    </div>
+  );
+}
+export default DisplayRepo;
