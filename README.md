@@ -8,7 +8,7 @@
 - navigate to github profile or individual repo
 
 ## Filtering the data
-![caption](github-finder.gif)
+![caption](github-search.gif)
 
 ## Technologies
 - React
