@@ -7,7 +7,7 @@
 - get details such as locations, repos info, followings and followers
 - navigate to github profile or individual repo
 
-## Filtering the data
+## Searching for users and navigating to repo
 ![caption](github-serach.gif)
 
 ## Technologies
